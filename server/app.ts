@@ -1,12 +1,10 @@
-const express = require('express');
-const path = require('path');
-const cookieParser = require('cookie-parser');
-const logger = require('morgan');
-
-// const todosRouter = require('./routes/todosRouter');
+import express, { Request, Response, NextFunction } from 'express';
+import path from 'path';
+import cookieParser from 'cookie-parser';
+import logger from 'morgan';
+import http from 'http';
 
 const app = express();
-const http = require('http');
 const server = http.createServer(app);
 
 app.use(logger('dev'));
@@ -18,6 +16,8 @@ app.set('port', '4000');
 
 server.listen('4000');
 
-// app.use('/todos', todosRouter);
+// app.get('/welcome', (req: Request, res: Response, next: NextFunction) => {
+//   res.send('welcome!');
+// });
 
 module.exports = app;
