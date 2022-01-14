@@ -1,5 +1,46 @@
+// prettier-ignore
+body,
+div, span,
+h1, h2, h3, h4, h5, h6,
+p, a, img,
+li, ul, ol, dl, dt, dd,
+form, label,
+table, caption, tbody, tfoot, thead, tr, th, td,
+canvas, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font: inherit;
+  font-size: 1rem;
+  vertical-align: baseline; 
+}
+
 body {
-  background: #353535;
-  color: blue;
-  font-size: 24px;
+  line-height: 1;
+  box-sizing: border-box;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+img {
+  vertical-align: top;
+}
+
+input {
+  vertical-align: middle;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
 }
