@@ -1,7 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
+import { flexBox } from 'src/util/style';
+import { GNB } from 'src/components/common';
 
 const HeaderContainer = styled.header`
+  ${flexBox};
+
   width: 100%;
   height: 120px;
   position: relative;
@@ -9,7 +13,11 @@ const HeaderContainer = styled.header`
 `;
 
 const Header = () => {
-  return <HeaderContainer />;
+  return (
+    <HeaderContainer>
+      <GNB />
+    </HeaderContainer>
+  );
 };
 
 export default Header;
