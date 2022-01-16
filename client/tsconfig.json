@@ -4,7 +4,7 @@
     "target": "es5",
     "jsx": "react-jsx",
     "moduleResolution": "Node",
-    "baseUrl": "./",
+    "baseUrl": ".",
     "esModuleInterop": true,
     "strict": true,
     "skipLibCheck": true,
