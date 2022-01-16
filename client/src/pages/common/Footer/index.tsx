@@ -4,8 +4,8 @@ import styled from 'styled-components';
 const FooterContainer = styled.footer`
   width: 100%;
   height: 436px;
-  background: purple;
   position: relative;
+  border-top: 1px solid #979797;
 `;
 
 const Footer = () => {

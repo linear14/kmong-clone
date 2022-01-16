@@ -4,7 +4,6 @@ import styled from 'styled-components';
 const Container = styled.div`
   width: 100%;
   height: 800px;
-  background: gray;
 `;
 
 const MainPage = () => {
