@@ -5,6 +5,7 @@ const HeaderContainer = styled.header`
   width: 100%;
   height: 120px;
   background: yellowgreen;
+  position: relative;
 `;
 
 const Header = () => {
