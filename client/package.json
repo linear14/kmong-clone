@@ -39,6 +39,7 @@
     "@types/jest": "^27.0.3",
     "@types/styled-components": "^5.1.20",
     "babel-loader": "^8.2.3",
+    "babel-plugin-module-resolver": "^4.1.0",
     "clean-webpack-plugin": "^4.0.0",
     "css-loader": "^6.5.1",
     "html-webpack-plugin": "^5.5.0",
