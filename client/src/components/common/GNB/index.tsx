@@ -6,7 +6,10 @@ import CategoryNav from './CategoryNav';
 import MainNav from './MainNav';
 
 const GNBContainer = styled.div`
-  ${flexBox({ direction: FlexDirection.COLUMN })};
+  ${flexBox({
+    direction: FlexDirection.COLUMN,
+    isAxisCenter: false
+  })};
 
   width: 1170px;
   min-width: 1170px;
