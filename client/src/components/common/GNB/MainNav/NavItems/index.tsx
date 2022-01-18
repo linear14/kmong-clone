@@ -10,6 +10,7 @@ const Container = styled.div`
 
 const LoginButton = styled(Button)`
   margin-right: 16px;
+
   &::after {
     content: '로그인';
   }
@@ -19,9 +20,8 @@ const SignUpButton = styled(Button).attrs({
   appearance: ButtonAppearance.BLUE,
   size: ButtonSize.LARGE
 })`
-  font-weight: bold;
   &::after {
-    content: '회원가입';
+    content: '무료 회원가입';
   }
 `;
 

@@ -40,6 +40,8 @@ const Button = styled.div<IButtonProps>`
   border-radius: 4px;
   color: var(--button-font-color);
   background: var(--button-bg-color);
+  font-size: 15px;
+  font-weight: 500;
   cursor: pointer;
 
   transition: 0.25s;
