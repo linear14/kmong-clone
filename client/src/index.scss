@@ -42,6 +42,13 @@ input {
   vertical-align: middle;
 }
 
+a,
+a:hover,
+a:active {
+  text-decoration: none;
+  color: black;
+}
+
 *,
 *::before,
 *::after {
