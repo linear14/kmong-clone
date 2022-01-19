@@ -28,7 +28,10 @@ const CategoryBox = () => {
   const [isActive, setActive] = useState(false);
 
   return (
-    <Container>
+    <Container
+      onMouseEnter={() => setActive(true)}
+      onMouseLeave={() => setActive(false)}
+    >
       <InnerContainer>
         <MdMenu size={24} />
         <span>전체 카테고리</span>

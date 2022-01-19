@@ -17,8 +17,9 @@ const InnerContainer = styled.div`
   flex: 1;
 `;
 
-const EnterpriseLink = styled(Link)`
+const EnterpriseLink = styled(Link)<{ $isActive: boolean }>`
   font-size: 16px;
+  font-weight: ${({ $isActive }) => ($isActive ? 'bold' : 'normal')};
 
   &::after {
     content: '엔터프라이즈';
@@ -29,9 +30,12 @@ const EnterpriseBox = () => {
   const [isActive, setActive] = useState(false);
 
   return (
-    <Container>
+    <Container
+      onMouseEnter={() => setActive(true)}
+      onMouseLeave={() => setActive(false)}
+    >
       <InnerContainer>
-        <EnterpriseLink to='/' />
+        <EnterpriseLink to='/' $isActive={isActive} />
       </InnerContainer>
       <ActiveBar isActive={isActive} />
     </Container>
