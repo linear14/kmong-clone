@@ -8,8 +8,10 @@ const CategoryNavContainer = styled.div`
   ${flexBox({ isAxisCenter: false })};
 
   width: 100%;
+  height: 100%;
   flex: 1;
   justify-content: space-between;
+  position: relative;
 `;
 
 const RequestLink = styled(Link)`
