@@ -3,6 +3,7 @@ import { flexBox } from 'src/util/style';
 import styled from 'styled-components';
 import { MdMenu, MdArrowDropDown } from 'react-icons/md';
 import { FlexDirection } from 'src/enum/style';
+import ActiveBar from './ActiveBar';
 
 const Container = styled.div`
   ${flexBox({ direction: FlexDirection.COLUMN })};
@@ -24,6 +25,8 @@ const InnerContainer = styled.div`
 `;
 
 const CategoryBox = () => {
+  const [isActive, setActive] = useState(false);
+
   return (
     <Container>
       <InnerContainer>
@@ -31,6 +34,7 @@ const CategoryBox = () => {
         <span>전체 카테고리</span>
         <MdArrowDropDown size={16} />
       </InnerContainer>
+      <ActiveBar isActive={isActive} />
     </Container>
   );
 };

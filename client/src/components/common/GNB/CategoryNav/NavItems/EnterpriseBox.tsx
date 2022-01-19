@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { FlexDirection } from 'src/enum/style';
 import { flexBox } from 'src/util/style';
 import styled from 'styled-components';
+import ActiveBar from './ActiveBar';
 
 const Container = styled.div`
   ${flexBox({ direction: FlexDirection.COLUMN })};
@@ -25,12 +26,14 @@ const EnterpriseLink = styled(Link)`
 `;
 
 const EnterpriseBox = () => {
+  const [isActive, setActive] = useState(false);
 
   return (
     <Container>
       <InnerContainer>
         <EnterpriseLink to='/' />
       </InnerContainer>
+      <ActiveBar isActive={isActive} />
     </Container>
   );
 };
