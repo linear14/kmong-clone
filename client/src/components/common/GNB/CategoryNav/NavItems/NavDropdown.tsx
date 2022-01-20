@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { categoryMock } from 'src/mock/category';
 import styled from 'styled-components';
 import { MdKeyboardArrowRight } from 'react-icons/md';
@@ -45,6 +45,14 @@ const NavDropdown = () => {
   const [rootIdx, setRootIdx] = useState<number | null>(null);
   const [rootHoverIdx, setRootHoverIdx] = useState<number | null>(null);
 
+  const handleMouseEnter = useCallback(
+    (idx: number) => {
+      setRootIdx(idx);
+      setRootHoverIdx(idx);
+    },
+    [setRootIdx, setRootHoverIdx]
+  );
+
   return (
     <Container rootIdx={rootIdx}>
       <InnerContainer>
@@ -53,10 +61,7 @@ const NavDropdown = () => {
             key={item.id}
             isRoot={true}
             isBold={idx === rootIdx && idx !== rootHoverIdx}
-            onMouseEnter={() => {
-              setRootIdx(idx);
-              setRootHoverIdx(idx);
-            }}
+            onMouseEnter={() => handleMouseEnter(idx)}
             onMouseLeave={() => setRootHoverIdx(null)}
           >
             {item.name}
