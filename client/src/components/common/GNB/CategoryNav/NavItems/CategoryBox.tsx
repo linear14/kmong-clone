@@ -4,11 +4,13 @@ import styled from 'styled-components';
 import { MdMenu, MdArrowDropDown } from 'react-icons/md';
 import { FlexDirection } from 'src/enum/style';
 import ActiveBar from './ActiveBar';
+import NavDropdown from './NavDropdown';
 
 const Container = styled.div`
   ${flexBox({ direction: FlexDirection.COLUMN })};
   height: 100%;
   cursor: pointer;
+  position: relative;
 `;
 
 const InnerContainer = styled.div`
@@ -38,6 +40,7 @@ const CategoryBox = () => {
         <MdArrowDropDown size={16} />
       </InnerContainer>
       <ActiveBar isActive={isActive} />
+      {isActive && <NavDropdown />}
     </Container>
   );
 };

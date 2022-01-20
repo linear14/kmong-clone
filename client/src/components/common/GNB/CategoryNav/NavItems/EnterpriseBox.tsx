@@ -27,7 +27,7 @@ const EnterpriseLink = styled(Link)<{ $isActive: boolean }>`
 `;
 
 const EnterpriseBox = () => {
-  const [isActive, setActive] = useState(false);
+  const [isActive, setActive] = useState<boolean>(false);
 
   return (
     <Container
