@@ -1,12 +1,9 @@
 import React, { useState } from 'react';
 import { categoryMock } from 'src/mock/category';
-import { flexBox } from 'src/util/style';
 import styled from 'styled-components';
 import { MdKeyboardArrowRight } from 'react-icons/md';
 
 const Container = styled.div<{ rootIdx: number | null }>`
-  ${flexBox({ isAxisCenter: false, isPerpendicularAxisCenter: false })};
-
   width: ${({ rootIdx }) => (rootIdx === null ? '188px' : '878px')};
   height: 480px;
   padding: 8px 0px;
@@ -18,6 +15,8 @@ const Container = styled.div<{ rootIdx: number | null }>`
   top: 45px;
   z-index: 5;
   cursor: default;
+
+  display: flex;
 `;
 
 const InnerContainer = styled.div`
@@ -26,14 +25,15 @@ const InnerContainer = styled.div`
 `;
 
 const CategoryItem = styled.div<{ isRoot: boolean; isBold?: boolean }>`
-  ${flexBox({ isAxisCenter: false, isPerpendicularAxisCenter: false })};
-  justify-content: space-between;
   font-size: ${({ isRoot }) => (isRoot ? '15px' : '14px')};
   font-weight: ${({ isBold }) => (isBold ? 'bold' : 'normal')};
   padding: ${({ isRoot }) => (isRoot ? '12px 16px' : '8px 16px')};
   padding-right: 8px;
   line-height: 20px;
   cursor: pointer;
+
+  display: flex;
+  justify-content: space-between;
 
   &:hover {
     background: #f2f3f7;

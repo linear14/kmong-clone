@@ -1,19 +1,20 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { FlexDirection } from 'src/enum/style';
-import { flexBox } from 'src/util/style';
 import styled from 'styled-components';
 import ActiveBar from './ActiveBar';
 
 const Container = styled.div`
-  ${flexBox({ direction: FlexDirection.COLUMN })};
   margin-left: 40px;
   height: 100%;
   cursor: pointer;
+
+  display: flex;
+  flex-direction: column;
 `;
 
 const InnerContainer = styled.div`
-  ${flexBox}
+  display: flex;
+  align-items: center;
   flex: 1;
 `;
 

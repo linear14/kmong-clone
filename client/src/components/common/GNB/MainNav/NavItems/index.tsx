@@ -1,11 +1,12 @@
 import React from 'react';
 import { Button } from 'src/components/common/Button';
 import { ButtonAppearance, ButtonSize } from 'src/enum/style';
-import { flexBox } from 'src/util/style';
 import styled from 'styled-components';
 
 const Container = styled.div`
-  ${flexBox};
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 const LoginButton = styled(Button)`

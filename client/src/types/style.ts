@@ -1,10 +1,4 @@
-import { ButtonAppearance, ButtonSize, FlexDirection } from 'src/enum/style';
-
-export interface IFlexBox {
-  direction?: FlexDirection;
-  isAxisCenter?: boolean;
-  isPerpendicularAxisCenter?: boolean;
-}
+import { ButtonAppearance, ButtonSize } from 'src/enum/style';
 
 export interface IButtonProps {
   appearance?: ButtonAppearance;

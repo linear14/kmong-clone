@@ -1,17 +1,17 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { flexBox } from 'src/util/style';
 import styled from 'styled-components';
 import NavItems from './NavItems';
 
 const CategoryNavContainer = styled.div`
-  ${flexBox({ isAxisCenter: false })};
-
   width: 100%;
   height: 100%;
   flex: 1;
   justify-content: space-between;
   position: relative;
+
+  display: flex;
+  align-items: center;
 `;
 
 const RequestLink = styled(Link)`

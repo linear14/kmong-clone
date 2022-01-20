@@ -1,15 +1,15 @@
 import React from 'react';
-import { flexBox } from 'src/util/style';
 import styled from 'styled-components';
 import logo from 'src/assets/images/logo.png';
 import NavItems from './NavItems';
 
 const MainNavContainer = styled.div`
-  ${flexBox({ isAxisCenter: false })};
-
   width: 100%;
   height: 74px;
   justify-content: space-between;
+  align-items: center;
+
+  display: flex;
 `;
 
 const Logo = styled.img.attrs({
