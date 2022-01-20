@@ -7,6 +7,7 @@ const HeaderContainer = styled.header`
   ${flexBox};
 
   width: 100%;
+  min-width: 1170px;
   height: 120px;
   position: relative;
   border-bottom: 1px solid #e4e5ed;
