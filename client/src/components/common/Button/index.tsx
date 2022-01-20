@@ -12,6 +12,13 @@ const buttonAppearance = {
     --button-font-color: white;
     --button-bg-color: #116ad4;
     --button-hover-bg-color: #0751ab;
+  `,
+  [ButtonAppearance.OUTLINE]: css`
+    -button-font-color: #666;
+    --button-bg-color: white;
+    --button-hover-bg-color: #f2f3f7;
+    --button-active-bg-color: #e4e5ed;
+    --button-border: 1px solid #555969;
   `
 };
 
@@ -38,6 +45,7 @@ const Button = styled.div<IButtonProps>`
   height: var(--button-height);
   padding: var(--button-padding);
   border-radius: 4px;
+  border: var(--button-border);
   color: var(--button-font-color);
   background: var(--button-bg-color);
   font-size: 15px;
@@ -48,6 +56,10 @@ const Button = styled.div<IButtonProps>`
 
   &:hover {
     background: var(--button-hover-bg-color);
+  }
+
+  &:active {
+    background: var(--button-active-bg-color);
   }
 `;
 

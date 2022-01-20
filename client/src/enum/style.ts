@@ -1,6 +1,7 @@
 export enum ButtonAppearance {
   TRANSPARENT,
-  BLUE
+  BLUE,
+  OUTLINE
 }
 
 export enum ButtonSize {
