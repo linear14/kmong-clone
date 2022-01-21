@@ -3,6 +3,7 @@ import path from 'path';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 import http from 'http';
+import { categoryRouter } from './api-routes';
 
 const app = express();
 const server = http.createServer(app);
@@ -15,5 +16,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.set('port', '4000');
 
 server.listen('4000');
+app.use('/category', categoryRouter);
 
 module.exports = app;
