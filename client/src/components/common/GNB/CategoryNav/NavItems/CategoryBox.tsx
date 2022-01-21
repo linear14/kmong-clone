@@ -1,8 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getAllCategories } from 'src/actions/category';
 import styled from 'styled-components';
 import { MdMenu, MdArrowDropDown } from 'react-icons/md';
 import ActiveBar from './ActiveBar';
 import NavDropdown from './NavDropdown';
+import { RootState } from 'src/reducers';
 
 const Container = styled.div`
   height: 100%;
@@ -30,6 +33,14 @@ const InnerContainer = styled.div`
 
 const CategoryBox = () => {
   const [isActive, setActive] = useState(false);
+  const categoryList = useSelector(
+    (state: RootState) => state.categoryList.categories
+  );
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getAllCategories());
+  }, [dispatch]);
 
   return (
     <Container
@@ -42,7 +53,9 @@ const CategoryBox = () => {
         <MdArrowDropDown size={16} />
       </InnerContainer>
       <ActiveBar isActive={isActive} />
-      {isActive && <NavDropdown />}
+      {isActive && categoryList.length > 0 && (
+        <NavDropdown categoryList={categoryList} />
+      )}
     </Container>
   );
 };
