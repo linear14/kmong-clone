@@ -5,7 +5,7 @@ import { ICategory } from 'src/types/category';
 
 const Container = styled.div<{ rootIdx: number | null }>`
   width: ${({ rootIdx }) => (rootIdx === null ? '188px' : '878px')};
-  height: 480px;
+  height: 500px;
   padding: 8px 0px;
   background: white;
   border-radius: 4px;
@@ -22,6 +22,27 @@ const Container = styled.div<{ rootIdx: number | null }>`
 const InnerContainer = styled.div`
   width: 188px;
   border-radius: 4px;
+  overflow-y: auto;
+
+  ::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #ccc;
+
+    &:hover {
+      background: #aaa;
+    }
+
+    &:active {
+      background: #999;
+    }
+  }
 `;
 
 const CategoryItem = styled.div<{ isRoot: boolean; isBold?: boolean }>`
