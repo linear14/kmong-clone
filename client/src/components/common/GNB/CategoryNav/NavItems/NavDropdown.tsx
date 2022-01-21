@@ -1,11 +1,11 @@
 import React, { useCallback, useState } from 'react';
-import { categoryMock } from 'src/mock/category';
 import styled from 'styled-components';
 import { MdKeyboardArrowRight } from 'react-icons/md';
+import { ICategory } from 'src/types/category';
 
 const Container = styled.div<{ rootIdx: number | null }>`
   width: ${({ rootIdx }) => (rootIdx === null ? '188px' : '878px')};
-  height: 480px;
+  height: 500px;
   padding: 8px 0px;
   background: white;
   border-radius: 4px;
@@ -22,6 +22,27 @@ const Container = styled.div<{ rootIdx: number | null }>`
 const InnerContainer = styled.div`
   width: 188px;
   border-radius: 4px;
+  overflow-y: auto;
+
+  ::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #ccc;
+
+    &:hover {
+      background: #aaa;
+    }
+
+    &:active {
+      background: #999;
+    }
+  }
 `;
 
 const CategoryItem = styled.div<{ isRoot: boolean; isBold?: boolean }>`
@@ -40,8 +61,7 @@ const CategoryItem = styled.div<{ isRoot: boolean; isBold?: boolean }>`
   }
 `;
 
-const NavDropdown = () => {
-  const [data, setData] = useState(categoryMock);
+const NavDropdown = ({ categoryList }: { categoryList: ICategory[] }) => {
   const [rootIdx, setRootIdx] = useState<number | null>(null);
   const [rootHoverIdx, setRootHoverIdx] = useState<number | null>(null);
 
@@ -56,7 +76,7 @@ const NavDropdown = () => {
   return (
     <Container rootIdx={rootIdx}>
       <InnerContainer>
-        {data.map((item, idx) => (
+        {categoryList.map((item, idx) => (
           <CategoryItem
             key={item.id}
             isRoot={true}
@@ -71,7 +91,7 @@ const NavDropdown = () => {
       </InnerContainer>
       {rootIdx !== null && (
         <InnerContainer>
-          {data[rootIdx].children.map(item => (
+          {categoryList[rootIdx].children?.map(item => (
             <CategoryItem key={item.id} isRoot={false}>
               {item.name}
             </CategoryItem>
