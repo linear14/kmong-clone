@@ -9,8 +9,12 @@ export const getAllCategories = async () => {
       }
     };
     const res = await fetch('/category', option);
-    const result: ICategory[] = await res.json();
-    return result;
+    if (res.ok) {
+      const result: ICategory[] = await res.json();
+      return result;
+    } else {
+      return [];
+    }
   } catch (err) {
     return [];
   }
