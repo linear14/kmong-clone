@@ -4,6 +4,7 @@ import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 import http from 'http';
 import { categoryRouter } from './api-routes';
+import errorHandler from './middleware/errorHandler';
 
 const app = express();
 const server = http.createServer(app);
@@ -17,5 +18,6 @@ app.set('port', '4000');
 
 server.listen('4000');
 app.use('/category', categoryRouter);
+app.use(errorHandler);
 
 module.exports = app;
