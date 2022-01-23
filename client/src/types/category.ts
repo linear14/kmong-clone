@@ -5,11 +5,3 @@ export interface ICategory {
   depth: number;
   children?: ICategory[];
 }
-
-export interface ICategoryState {
-  state: {
-    loading: boolean;
-    error: boolean;
-  };
-  categories: ICategory[];
-}

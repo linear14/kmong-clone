@@ -2,7 +2,7 @@ import {
   GET_ALL_CATEGORIES,
   GET_ALL_CATEGORIES_ERROR,
   GET_ALL_CATEGORIES_SUCCESS
-} from 'src/constants/ActionTypes';
+} from './constant';
 import { ICategory } from 'src/types/category';
 
 export const getAllCategories = () => ({ type: GET_ALL_CATEGORIES });
@@ -15,7 +15,7 @@ export const getAllCategoriesFailed = () => ({
   payload: { error: true }
 });
 
-export type ActionRequest =
+export type GetAllCategoriesAction =
   | ReturnType<typeof getAllCategories>
   | ReturnType<typeof getAllCategoriesSuccess>
   | ReturnType<typeof getAllCategoriesFailed>;

@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllCategories } from 'src/actions/category';
+import { getAllCategories } from 'src/states/category/action';
 import styled from 'styled-components';
 import { MdMenu, MdArrowDropDown } from 'react-icons/md';
 import ActiveBar from './ActiveBar';
 import NavDropdown from './NavDropdown';
-import { RootState } from 'src/reducers';
+import { RootState } from 'src/states';
 
 const Container = styled.div`
   height: 100%;
