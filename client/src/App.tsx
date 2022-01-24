@@ -11,7 +11,7 @@ const App = () => {
       <Body>
         <Routes>
           <Route path='/' element={<Home />} />
-          <Route path='/category' element={<Category />} />
+          <Route path='/category/:categoryIdx' element={<Category />} />
           <Route path='*' element={<Navigate to='/' />} />
         </Routes>
       </Body>

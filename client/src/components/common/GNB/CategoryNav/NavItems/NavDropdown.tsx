@@ -2,6 +2,7 @@ import React, { useCallback, useState } from 'react';
 import styled from 'styled-components';
 import { MdKeyboardArrowRight } from 'react-icons/md';
 import { ICategory } from 'src/types/category';
+import { Link } from 'react-router-dom';
 
 const Container = styled.div<{ rootIdx: number | null }>`
   width: ${({ rootIdx }) => (rootIdx === null ? '188px' : '878px')};
@@ -45,7 +46,7 @@ const InnerContainer = styled.div`
   }
 `;
 
-const CategoryItem = styled.div<{ isRoot: boolean; isBold?: boolean }>`
+const CategoryItem = styled(Link)<{ isRoot: boolean; isBold?: boolean }>`
   font-size: ${({ isRoot }) => (isRoot ? '15px' : '14px')};
   font-weight: ${({ isBold }) => (isBold ? 'bold' : 'normal')};
   padding: ${({ isRoot }) => (isRoot ? '12px 16px' : '8px 16px')};
@@ -83,6 +84,7 @@ const NavDropdown = ({ categoryList }: { categoryList: ICategory[] }) => {
             isBold={idx === rootIdx && idx !== rootHoverIdx}
             onMouseEnter={() => handleMouseEnter(idx)}
             onMouseLeave={() => setRootHoverIdx(null)}
+            to={`category/${item.id}`}
           >
             {item.name}
             {idx === rootHoverIdx && <MdKeyboardArrowRight size={20} />}
@@ -92,7 +94,11 @@ const NavDropdown = ({ categoryList }: { categoryList: ICategory[] }) => {
       {rootIdx !== null && (
         <InnerContainer>
           {categoryList[rootIdx].children?.map(item => (
-            <CategoryItem key={item.id} isRoot={false}>
+            <CategoryItem
+              key={item.id}
+              isRoot={false}
+              to={`category/${item.id}`}
+            >
               {item.name}
             </CategoryItem>
           ))}

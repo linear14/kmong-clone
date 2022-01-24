@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import logo from 'src/assets/images/logo.png';
 import NavItems from './NavItems';
+import { Link } from 'react-router-dom';
 
 const MainNavContainer = styled.div`
   width: 100%;
@@ -12,17 +13,19 @@ const MainNavContainer = styled.div`
   display: flex;
 `;
 
-const Logo = styled.img.attrs({
-  src: logo
-})`
+const Logo = styled(Link)`
   width: 80px;
   height: 34px;
+  cursor: pointer;
+
+  background: url('${logo}');
+  background-size: 80px 34px;
 `;
 
 const MainNav = () => {
   return (
     <MainNavContainer>
-      <Logo />
+      <Logo to={'/'} />
       <NavItems />
     </MainNavContainer>
   );
