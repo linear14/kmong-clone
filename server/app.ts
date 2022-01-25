@@ -13,11 +13,11 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'build')));
 app.set('port', '4000');
 
 server.listen('4000');
-app.use('/category', categoryRouter);
+app.use('/api/category', categoryRouter);
 app.use(errorHandler);
 
 module.exports = app;
