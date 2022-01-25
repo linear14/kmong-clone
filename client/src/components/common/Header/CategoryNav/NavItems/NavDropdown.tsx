@@ -46,10 +46,10 @@ const InnerContainer = styled.div`
   }
 `;
 
-const CategoryItem = styled(Link)<{ isRoot: boolean; isBold?: boolean }>`
-  font-size: ${({ isRoot }) => (isRoot ? '15px' : '14px')};
-  font-weight: ${({ isBold }) => (isBold ? 'bold' : 'normal')};
-  padding: ${({ isRoot }) => (isRoot ? '12px 16px' : '8px 16px')};
+const CategoryItem = styled(Link)<{ $isRoot: boolean; $isBold?: boolean }>`
+  font-size: ${({ $isRoot }) => ($isRoot ? '15px' : '14px')};
+  font-weight: ${({ $isBold }) => ($isBold ? 'bold' : 'normal')};
+  padding: ${({ $isRoot }) => ($isRoot ? '12px 16px' : '8px 16px')};
   padding-right: 8px;
   line-height: 20px;
   cursor: pointer;
@@ -80,8 +80,8 @@ const NavDropdown = ({ categoryList }: { categoryList: ICategory[] }) => {
         {categoryList.map((item, idx) => (
           <CategoryItem
             key={item.id}
-            isRoot={true}
-            isBold={idx === rootIdx && idx !== rootHoverIdx}
+            $isRoot={true}
+            $isBold={idx === rootIdx && idx !== rootHoverIdx}
             onMouseEnter={() => handleMouseEnter(idx)}
             onMouseLeave={() => setRootHoverIdx(null)}
             to={`category/${item.id}`}
@@ -96,7 +96,7 @@ const NavDropdown = ({ categoryList }: { categoryList: ICategory[] }) => {
           {categoryList[rootIdx].children?.map(item => (
             <CategoryItem
               key={item.id}
-              isRoot={false}
+              $isRoot={false}
               to={`category/${item.id}`}
             >
               {item.name}
