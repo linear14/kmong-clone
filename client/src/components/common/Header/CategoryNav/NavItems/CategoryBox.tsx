@@ -54,7 +54,7 @@ const CategoryBox = () => {
       </InnerContainer>
       <ActiveBar isActive={isActive} />
       {isActive && categoryList.length > 0 && (
-        <NavDropdown categoryList={categoryList} />
+        <NavDropdown categoryList={categoryList} setActive={setActive} />
       )}
     </Container>
   );

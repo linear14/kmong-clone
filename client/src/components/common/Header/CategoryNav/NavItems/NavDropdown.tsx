@@ -20,7 +20,7 @@ const Container = styled.div<{ rootIdx: number | null }>`
   display: flex;
 `;
 
-const InnerContainer = styled.div`
+const VerticalContainer = styled.div`
   width: 188px;
   border-radius: 4px;
   overflow-y: auto;
@@ -62,7 +62,13 @@ const CategoryItem = styled(Link)<{ $isRoot: boolean; $isBold?: boolean }>`
   }
 `;
 
-const NavDropdown = ({ categoryList }: { categoryList: ICategory[] }) => {
+const NavDropdown = ({
+  categoryList,
+  setActive
+}: {
+  categoryList: ICategory[];
+  setActive: React.Dispatch<React.SetStateAction<boolean>>;
+}) => {
   const [rootIdx, setRootIdx] = useState<number | null>(null);
   const [rootHoverIdx, setRootHoverIdx] = useState<number | null>(null);
 
@@ -76,12 +82,13 @@ const NavDropdown = ({ categoryList }: { categoryList: ICategory[] }) => {
 
   return (
     <Container rootIdx={rootIdx}>
-      <InnerContainer>
+      <VerticalContainer>
         {categoryList.map((item, idx) => (
           <CategoryItem
             key={item.id}
             $isRoot={true}
             $isBold={idx === rootIdx && idx !== rootHoverIdx}
+            onClick={() => setActive(false)}
             onMouseEnter={() => handleMouseEnter(idx)}
             onMouseLeave={() => setRootHoverIdx(null)}
             to={`category/${item.id}`}
@@ -90,19 +97,20 @@ const NavDropdown = ({ categoryList }: { categoryList: ICategory[] }) => {
             {idx === rootHoverIdx && <MdKeyboardArrowRight size={20} />}
           </CategoryItem>
         ))}
-      </InnerContainer>
+      </VerticalContainer>
       {rootIdx !== null && (
-        <InnerContainer>
+        <VerticalContainer>
           {categoryList[rootIdx].children?.map(item => (
             <CategoryItem
               key={item.id}
               $isRoot={false}
+              onClick={() => setActive(false)}
               to={`category/${item.id}`}
             >
               {item.name}
             </CategoryItem>
           ))}
-        </InnerContainer>
+        </VerticalContainer>
       )}
     </Container>
   );
