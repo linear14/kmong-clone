@@ -1,7 +1,7 @@
 import React from 'react';
 import { ButtonAppearance, ButtonSize } from 'src/enum/style';
 import styled from 'styled-components';
-import { Button } from '../Button';
+import { Button } from 'src/components/common/Button';
 
 const Container = styled.div`
   width: 1170px;

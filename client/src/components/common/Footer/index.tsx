@@ -1,28 +1,17 @@
 import React from 'react';
 import styled from 'styled-components';
-import BottomContent from './BottomContent';
-import TopContent from './TopContent';
+import Content from './Content';
 
-const Container = styled.div`
-  position: relative;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
-
-const Line = styled.div`
+const Container = styled.footer`
   width: 100%;
-  height: 1px;
-  background: #e4e5ed;
+  position: relative;
+  border-top: 1px solid #979797;
 `;
 
 const Footer = () => {
   return (
     <Container>
-      <TopContent />
-      <Line />
-      <BottomContent />
+      <Content />
     </Container>
   );
 };

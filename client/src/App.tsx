@@ -1,8 +1,18 @@
 import React from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
+import styled from 'styled-components';
+import { Footer, Header } from './components/common';
 import Category from './pages/Category';
-import { Header, Body, FooterContainer } from './pages/common';
 import Home from './pages/Home';
+
+const Body = styled.div`
+  width: 100%;
+  min-width: 1170px;
+  position: relative;
+
+  display: flex;
+  justify-content: center;
+`;
 
 const App = () => {
   return (
@@ -15,7 +25,7 @@ const App = () => {
           <Route path='*' element={<Navigate to='/' />} />
         </Routes>
       </Body>
-      <FooterContainer />
+      <Footer />
     </>
   );
 };

@@ -1,4 +1,4 @@
-import GNB from './GNB';
+import Header from './Header';
 import Footer from './Footer';
 
-export { GNB, Footer };
+export { Header, Footer };
