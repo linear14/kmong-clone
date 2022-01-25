@@ -40,7 +40,10 @@ module.exports = {
   },
   plugins: [
     new CleanWebpackPlugin(),
-    new HtmlWebpackPlugin({ template: './src/index.html' }),
+    new HtmlWebpackPlugin({
+      template: './src/index.html',
+      base: '/'
+    }),
     new MiniCssExtractPlugin()
   ],
   devServer: {
@@ -49,7 +52,7 @@ module.exports = {
     open: true,
     historyApiFallback: true,
     proxy: {
-      '/': 'http://localhost:4000'
+      '/api': 'http://localhost:4000'
     }
   }
 };

@@ -1,10 +1,7 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
-import {
-  getAllCategoriesFailed,
-  getAllCategoriesSuccess
-} from 'src/actions/category';
+import { getAllCategoriesFailed, getAllCategoriesSuccess } from './action';
 import api from 'src/apis';
-import { GET_ALL_CATEGORIES } from 'src/constants/ActionTypes';
+import { GET_ALL_CATEGORIES } from './constant';
 import { ICategory } from 'src/types/category';
 
 function* getAllCategories() {

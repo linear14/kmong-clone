@@ -8,9 +8,13 @@ export const getAllCategories = async () => {
         Accept: 'application/json'
       }
     };
-    const res = await fetch('/category', option);
-    const result: ICategory[] = await res.json();
-    return result;
+    const res = await fetch('/api/category', option);
+    if (res.ok) {
+      const result: ICategory[] = await res.json();
+      return result;
+    } else {
+      return [];
+    }
   } catch (err) {
     return [];
   }
