@@ -5,7 +5,7 @@ import { ICategory } from 'src/types/category';
 
 type ICategoryOrUndefined = ICategory | undefined;
 
-export default function useCategoryRelationState(
+export default function useRootCategoryState(
   categoryIdx: number
 ): [
   ICategoryOrUndefined,
@@ -14,9 +14,9 @@ export default function useCategoryRelationState(
   const allCategory = useSelector(
     (state: RootState) => state.categoryList.categories
   );
-  const [parentCategory, setParentCategory] = useState<ICategoryOrUndefined>();
+  const [rootCategory, setRootCategory] = useState<ICategoryOrUndefined>();
 
-  const getParentCategory = useCallback(() => {
+  const getRootCategory = useCallback(() => {
     if (allCategory.length > 0) {
       const parent = allCategory.find((item: ICategory) => {
         return (
@@ -24,15 +24,15 @@ export default function useCategoryRelationState(
           item.children?.map(child => child.id).includes(categoryIdx)
         );
       });
-      setParentCategory(parent);
+      setRootCategory(parent);
     }
   }, [allCategory, categoryIdx]);
 
   useEffect(() => {
     if (allCategory.length > 0) {
-      getParentCategory();
+      getRootCategory();
     }
   }, [allCategory, categoryIdx]);
 
-  return [parentCategory, setParentCategory];
+  return [rootCategory, setRootCategory];
 }

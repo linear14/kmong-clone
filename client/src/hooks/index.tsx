@@ -1,3 +1,3 @@
-import useCategoryRelationState from './useCategoryRelationState';
+import useRootCategoryState from './useRootCategoryState';
 
-export { useCategoryRelationState };
+export { useRootCategoryState };
