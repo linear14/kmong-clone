@@ -5,7 +5,7 @@ import { useRootCategoryState } from 'src/hooks';
 import { Link } from 'react-router-dom';
 
 const Container = styled.div`
-  width: 200px;
+  width: 184px;
   position: relative;
 `;
 
