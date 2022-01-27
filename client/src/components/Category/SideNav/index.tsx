@@ -5,7 +5,30 @@ import { useRootCategoryState } from 'src/hooks';
 
 const Container = styled.div`
   width: 200px;
-  background: #eeeeee;
+  position: relative;
+`;
+
+const RootTitle = styled.div`
+  width: 100%;
+  padding-bottom: 16px;
+  margin-bottom: 16px;
+  font-size: 22px;
+  font-weight: 500;
+  border-bottom: 2px solid #fcd200;
+`;
+
+const Category = styled.div`
+  width: 100%;
+  height: 32px;
+  line-height: 32px;
+  font-size: 14px;
+  color: #555969;
+  cursor: pointer;
+
+  &:hover {
+    color: #212224;
+    font-weight: 500;
+  }
 `;
 
 const SideNav = () => {
@@ -18,9 +41,9 @@ const SideNav = () => {
     <Container>
       {rootCategory && (
         <>
-          <div>{rootCategory.name}</div>
+          <RootTitle>{rootCategory.name}</RootTitle>
           {rootCategory.children?.map(item => (
-            <div>{item.name}</div>
+            <Category key={item.id}>{item.name}</Category>
           ))}
         </>
       )}
