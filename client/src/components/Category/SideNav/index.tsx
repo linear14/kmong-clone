@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useParams } from 'react-router-dom';
+import { useCategoryRelationState } from 'src/hooks';
 
 const Container = styled.div`
   width: 200px;
@@ -7,17 +9,21 @@ const Container = styled.div`
 `;
 
 const SideNav = () => {
+  const { categoryIdx } = useParams();
+  const [parentCategory, setParentCategory] = useCategoryRelationState(
+    Number(categoryIdx)
+  );
+
   return (
     <Container>
-      <div>카테고리 제목</div>
-      <div>소분류</div>
-      <div>소분류</div>
-      <div>소분류</div>
-      <div>소분류</div>
-      <div>소분류</div>
-      <div>소분류</div>
-      <div>소분류</div>
-      <div>소분류</div>
+      {parentCategory && (
+        <>
+          <div>{parentCategory.name}</div>
+          {parentCategory.children?.map(item => (
+            <div>{item.name}</div>
+          ))}
+        </>
+      )}
     </Container>
   );
 };
