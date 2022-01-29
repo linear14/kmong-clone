@@ -14,7 +14,7 @@ export default {
       );
       res.json(result);
     } catch (e) {
-      res.json([]);
+      next('Internal Server Error');
     }
   }
 };
