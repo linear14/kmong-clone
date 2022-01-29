@@ -1,3 +1,4 @@
 import categoryRouter from './category';
+import serviceRouter from './service';
 
-export { categoryRouter };
+export { categoryRouter, serviceRouter };
