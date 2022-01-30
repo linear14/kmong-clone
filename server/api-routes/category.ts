@@ -1,13 +1,8 @@
 import express from 'express';
-import { Request, Response, NextFunction } from 'express';
-import { allCategories } from '../models/Category/model';
+import { categoryController } from '../controllers';
 
 const router = express.Router();
 
-router.get('/', getAllCategories);
-
-function getAllCategories(req: Request, res: Response, next: NextFunction) {
-  res.json(allCategories);
-}
+router.get('/', categoryController.getAllCategories);
 
 export default router;

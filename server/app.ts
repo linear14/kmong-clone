@@ -3,7 +3,7 @@ import path from 'path';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 import http from 'http';
-import { categoryRouter } from './api-routes';
+import { categoryRouter, serviceRouter } from './api-routes';
 import errorHandler from './middleware/errorHandler';
 
 const app = express();
@@ -18,6 +18,7 @@ app.set('port', '4000');
 
 server.listen('4000');
 app.use('/api/category', categoryRouter);
+app.use('/api/service', serviceRouter);
 app.use(errorHandler);
 
 module.exports = app;
