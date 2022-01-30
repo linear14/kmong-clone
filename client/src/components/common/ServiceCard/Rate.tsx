@@ -19,7 +19,7 @@ const Container = styled.div`
 const Rate = ({ rate, rateCnt }: { rate: number; rateCnt: number }) => {
   return (
     <Container>
-      <div>{rate}</div>
+      <div>{rate.toFixed(1)}</div>
       <div>|</div>
       <div>{rateCnt}개의 평가</div>
     </Container>

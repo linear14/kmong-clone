@@ -13,13 +13,7 @@ const ThumbnailImage = styled.img`
   object-fit: cover;
 `;
 
-const Header = ({
-  thumbnailUrl,
-  isLike
-}: {
-  thumbnailUrl?: string;
-  isLike: boolean;
-}) => {
+const Header = ({ thumbnailUrl }: { thumbnailUrl?: string }) => {
   return (
     <Container>
       <ThumbnailImage src={thumbnailUrl} />

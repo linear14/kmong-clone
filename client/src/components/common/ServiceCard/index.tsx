@@ -19,22 +19,30 @@ const Container = styled.div`
 const ServiceCard = ({ service }: { service: IServiceCard }) => {
   const {
     serviceIdx,
+    userIdx,
     nickname,
     level,
     title,
     thumbnailUrl,
-    isLike,
-    price,
-    itemCnt,
+    leastPrice,
+    isPackage,
     rate,
     rateCnt
   } = service;
 
   return (
     <Container>
-      <Header thumbnailUrl={thumbnailUrl} isLike={isLike} />
+      <Header thumbnailUrl={thumbnailUrl || undefined} />
       <Body
-        serviceBody={{ nickname, level, title, price, itemCnt, rate, rateCnt }}
+        serviceBody={{
+          nickname,
+          level,
+          title,
+          leastPrice,
+          isPackage,
+          rate,
+          rateCnt
+        }}
       />
     </Container>
   );

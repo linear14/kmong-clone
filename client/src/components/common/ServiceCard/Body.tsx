@@ -28,7 +28,7 @@ const Title = styled.div`
   -webkit-box-orient: vertical;
 `;
 
-const Price = styled.div<{ itemCnt: number }>`
+const Price = styled.div<{ isPackage: boolean }>`
   text-align: end;
   font-size: 17px;
   font-weight: bold;
@@ -36,8 +36,8 @@ const Price = styled.div<{ itemCnt: number }>`
   color: #0f0f0f;
 
   &::after {
-    ${({ itemCnt }) =>
-      itemCnt > 1 &&
+    ${({ isPackage }) =>
+      isPackage &&
       css`
         content: '~';
       `}
@@ -47,19 +47,22 @@ const Price = styled.div<{ itemCnt: number }>`
 const Body = ({
   serviceBody
 }: {
-  serviceBody: Omit<IServiceCard, 'serviceIdx' | 'thumbnailUrl' | 'isLike'>;
+  serviceBody: Omit<IServiceCard, 'serviceIdx' | 'userIdx' | 'thumbnailUrl'>;
 }) => {
-  const { nickname, level, title, price, itemCnt, rate, rateCnt } = serviceBody;
+  const { nickname, level, title, leastPrice, isPackage, rate, rateCnt } =
+    serviceBody;
 
   return (
     <BodyContainer>
       <div>
         <UserInfo level={level} nickname={nickname} />
-        <Title>{title}</Title>
+        <Title>{title}드립니다.</Title>
       </div>
       <div>
-        <Price itemCnt={itemCnt}>{price.toLocaleString('ko-KR')}원</Price>
-        <Rate rate={rate} rateCnt={rateCnt} />
+        <Price isPackage={isPackage}>
+          {leastPrice.toLocaleString('ko-KR')}원
+        </Price>
+        <Rate rate={Number(rate)} rateCnt={rateCnt} />
       </div>
     </BodyContainer>
   );
