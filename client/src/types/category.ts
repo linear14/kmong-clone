@@ -5,3 +5,4 @@ export interface ICategory {
   depth: number;
   children?: ICategory[];
 }
+export type ICategoryOrUndefined = ICategory | undefined;

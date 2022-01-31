@@ -1,9 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from 'src/states';
-import { ICategory } from 'src/types/category';
-
-type ICategoryOrUndefined = ICategory | undefined;
+import { ICategory, ICategoryOrUndefined } from 'src/types/category';
 
 export default function useRootCategoryState(
   categoryIdx: number

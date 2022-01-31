@@ -1,27 +1,14 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
-import { getServicesByCategoryIdx } from 'src/states/service/action';
-import { RootState } from 'src/states';
+import React from 'react';
 import styled from 'styled-components';
 import ServiceList from './ServiceList';
+import { IServiceCard } from 'src/types/service';
 
 const Container = styled.div`
   flex: 1;
   margin-left: 24px;
 `;
 
-const Body = () => {
-  const { categoryIdx } = useParams();
-  const serviceList = useSelector(
-    (state: RootState) => state.serviceCardList.serviceCardList
-  );
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(getServicesByCategoryIdx(Number(categoryIdx)));
-  }, [categoryIdx, dispatch]);
-
+const Body = ({ serviceList }: { serviceList: IServiceCard[] }) => {
   return (
     <Container>
       <ServiceList serviceList={serviceList} />

@@ -1,8 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useParams } from 'react-router-dom';
-import { useRootCategoryState } from 'src/hooks';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
+import { ICategoryOrUndefined } from 'src/types/category';
 
 const Container = styled.div`
   width: 184px;
@@ -34,11 +33,8 @@ const Category = styled(Link)<{ $isActive: boolean }>`
   }
 `;
 
-const SideNav = () => {
+const SideNav = ({ rootCategory }: { rootCategory: ICategoryOrUndefined }) => {
   const { categoryIdx } = useParams();
-  const [rootCategory, setRootCategory] = useRootCategoryState(
-    Number(categoryIdx)
-  );
 
   return (
     <Container>
