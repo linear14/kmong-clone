@@ -4,7 +4,7 @@ import { IServiceCard } from 'src/types/service';
 import styled from 'styled-components';
 
 const Container = styled.div`
-  margin: 0px -12px;
+  margin: 24px -12px 0px;
 
   display: flex;
   flex-wrap: wrap;
