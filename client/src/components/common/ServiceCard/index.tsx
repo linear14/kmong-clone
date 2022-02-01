@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import Header from './Header';
 import { IServiceCard } from 'src/types/service';
@@ -30,9 +30,14 @@ const ServiceCard = ({ service }: { service: IServiceCard }) => {
     rateCnt
   } = service;
 
+  const [isHover, setHover] = useState(false);
+
   return (
-    <Container>
-      <Header thumbnailUrl={thumbnailUrl || undefined} />
+    <Container
+      onMouseEnter={() => setHover(true)}
+      onMouseLeave={() => setHover(false)}
+    >
+      <Header thumbnailUrl={thumbnailUrl || undefined} isHover={isHover} />
       <Body
         serviceBody={{
           nickname,
