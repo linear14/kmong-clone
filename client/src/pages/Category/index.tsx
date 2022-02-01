@@ -17,16 +17,12 @@ const Container = styled.div`
 `;
 
 const CategoryPage = () => {
+  const dispatch = useDispatch();
   const { categoryIdx } = useParams();
-
   const [rootCategory, getHistoryFromRoot] = useRootCategoryState(
     Number(categoryIdx)
   );
-  const serviceList = useSelector(
-    (state: RootState) => state.serviceCardList.serviceCardList
-  );
-
-  const dispatch = useDispatch();
+  const serviceList = useSelector((state: RootState) => state.serviceCardList);
 
   useEffect(() => {
     dispatch(getServicesByCategoryIdx(Number(categoryIdx)));
@@ -36,7 +32,8 @@ const CategoryPage = () => {
     <Container>
       <SideNav rootCategory={rootCategory} />
       <Body
-        serviceList={serviceList}
+        isLoading={serviceList.state.loading}
+        serviceList={serviceList.serviceCardList}
         history={getHistoryFromRoot(rootCategory)}
       />
     </Container>

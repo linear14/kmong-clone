@@ -29,9 +29,11 @@ const HistoryLink = styled(Link)`
 `;
 
 const Body = ({
+  isLoading,
   serviceList,
   history
 }: {
+  isLoading: boolean;
   serviceList: IServiceCard[];
   history: ICategoryWithUrl[];
 }) => {
@@ -45,7 +47,7 @@ const Body = ({
           </div>
         ))}
       </HistoryContainer>
-      <ServiceList serviceList={serviceList} />
+      <ServiceList isLoading={isLoading} serviceList={serviceList} />
     </Container>
   );
 };
