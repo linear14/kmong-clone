@@ -19,7 +19,7 @@ const Container = styled.div`
 const CategoryPage = () => {
   const { categoryIdx } = useParams();
 
-  const [rootCategory, setRootCategory] = useRootCategoryState(
+  const [rootCategory, getHistoryFromRoot] = useRootCategoryState(
     Number(categoryIdx)
   );
   const serviceList = useSelector(
@@ -35,7 +35,10 @@ const CategoryPage = () => {
   return (
     <Container>
       <SideNav rootCategory={rootCategory} />
-      <Body serviceList={serviceList} />
+      <Body
+        serviceList={serviceList}
+        history={getHistoryFromRoot(rootCategory)}
+      />
     </Container>
   );
 };

@@ -6,3 +6,8 @@ export interface ICategory {
   children?: ICategory[];
 }
 export type ICategoryOrUndefined = ICategory | undefined;
+
+export interface ICategoryWithUrl {
+  name: string;
+  url: string;
+}
