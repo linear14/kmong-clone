@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllCategories } from 'src/states/category/action';
 import styled from 'styled-components';
@@ -32,20 +32,38 @@ const InnerContainer = styled.div`
 `;
 
 const CategoryBox = () => {
+  const dispatch = useDispatch();
   const [isActive, setActive] = useState(false);
   const categoryList = useSelector(
     (state: RootState) => state.categoryList.categories
   );
-  const dispatch = useDispatch();
+  const timerForSpreadDropdown = useRef<ReturnType<typeof setTimeout> | null>(
+    null
+  );
 
   useEffect(() => {
     dispatch(getAllCategories());
   }, [dispatch]);
 
+  const setTimer = useCallback(() => {
+    clearTimer();
+    timerForSpreadDropdown.current = setTimeout(() => {
+      setActive(true);
+    }, 250);
+  }, [setActive]);
+
+  const clearTimer = useCallback(() => {
+    setActive(false);
+    if (timerForSpreadDropdown.current) {
+      clearTimeout(timerForSpreadDropdown.current);
+      timerForSpreadDropdown.current = null;
+    }
+  }, [setActive]);
+
   return (
     <Container
-      onMouseEnter={() => setActive(true)}
-      onMouseLeave={() => setActive(false)}
+      onMouseEnter={() => setTimer()}
+      onMouseLeave={() => clearTimer()}
     >
       <InnerContainer>
         <MdMenu size={24} />
