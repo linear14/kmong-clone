@@ -1,3 +1,4 @@
+export const INIT_SERVICES = 'service/INIT_SERVICES' as const;
 export const GET_SERVICES_BY_CATEGORYIDX =
   'service/GET_SERVICES_BY_CATEGORYIDX' as const;
 export const GET_SERVICES_BY_CATEGORYIDX_SUCCESS =

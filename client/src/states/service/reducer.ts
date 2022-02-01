@@ -1,7 +1,8 @@
 import {
   GET_SERVICES_BY_CATEGORYIDX,
   GET_SERVICES_BY_CATEGORYIDX_SUCCESS,
-  GET_SERVICES_BY_CATEGORYIDX_ERROR
+  GET_SERVICES_BY_CATEGORYIDX_ERROR,
+  INIT_SERVICES
 } from './constant';
 import produce from 'immer';
 import { GetServicesByCategoryIdxAction } from './action';
@@ -25,6 +26,9 @@ export const serviceCardList = (
   action: GetServicesByCategoryIdxAction
 ) => {
   switch (action.type) {
+    case INIT_SERVICES: {
+      return initServiceCardListState;
+    }
     case GET_SERVICES_BY_CATEGORYIDX: {
       return produce(state, draft => {
         draft.state.loading = true;

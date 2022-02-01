@@ -1,10 +1,14 @@
 import {
+  INIT_SERVICES,
   GET_SERVICES_BY_CATEGORYIDX,
   GET_SERVICES_BY_CATEGORYIDX_SUCCESS,
   GET_SERVICES_BY_CATEGORYIDX_ERROR
 } from './constant';
 import { IServiceCard } from 'src/types/service';
 
+export const initSerivces = () => ({
+  type: INIT_SERVICES
+});
 export const getServicesByCategoryIdx = (categoryIdx: number) => ({
   type: GET_SERVICES_BY_CATEGORYIDX,
   payload: { categoryIdx }
@@ -19,6 +23,7 @@ export const getServicesByCategoryIdxFailed = () => ({
 });
 
 export type GetServicesByCategoryIdxAction =
+  | ReturnType<typeof initSerivces>
   | ReturnType<typeof getServicesByCategoryIdx>
   | ReturnType<typeof getServicesByCategoryIdxSuccess>
   | ReturnType<typeof getServicesByCategoryIdxFailed>;

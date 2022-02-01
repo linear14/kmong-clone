@@ -4,7 +4,10 @@ import { useParams } from 'react-router-dom';
 import { Body, SideNav } from 'src/components/Category';
 import { useRootCategoryState } from 'src/hooks';
 import { RootState } from 'src/states';
-import { getServicesByCategoryIdx } from 'src/states/service/action';
+import {
+  getServicesByCategoryIdx,
+  initSerivces
+} from 'src/states/service/action';
 import styled from 'styled-components';
 
 const Container = styled.div`
@@ -26,6 +29,10 @@ const CategoryPage = () => {
 
   useEffect(() => {
     dispatch(getServicesByCategoryIdx(Number(categoryIdx)));
+
+    return () => {
+      dispatch(initSerivces());
+    };
   }, [categoryIdx, dispatch]);
 
   return (
