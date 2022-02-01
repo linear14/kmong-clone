@@ -6,6 +6,7 @@ import { ICategoryWithUrl } from 'src/types/category';
 import { Link } from 'react-router-dom';
 
 const Container = styled.div`
+  min-height: 800px;
   flex: 1;
   margin-left: 24px;
 `;
