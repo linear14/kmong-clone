@@ -22,6 +22,23 @@ const serviceService = {
     } finally {
       conn.release();
     }
+  },
+
+  getTotalServiceCount: async (categoryIdx: number) => {
+    const conn: PoolConnection = await connection.getConnection();
+    const query = `
+      SELECT COUNT(*) as count
+      FROM SERVICE A 
+      WHERE A.categoryIdx = ?;`;
+
+    try {
+      const [row] = await conn.query(query, [categoryIdx]);
+      return row;
+    } catch (e) {
+      return [{ count: 0 }];
+    } finally {
+      conn.release();
+    }
   }
 };
 
