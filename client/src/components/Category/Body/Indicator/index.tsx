@@ -1,5 +1,5 @@
-import React, { useEffect, useMemo, useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import { useParams, useSearchParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { MdChevronLeft, MdChevronRight } from 'react-icons/md';
 import { Link } from 'react-router-dom';
@@ -7,13 +7,14 @@ import { Link } from 'react-router-dom';
 const Container = styled.div`
   display: flex;
   justify-content: center;
+  margin: 16px 0px;
 `;
 
 const InnerContainer = styled.div`
   display: flex;
 `;
 
-const RouterBox = styled.div`
+const RouterBox = styled(Link)`
   min-width: 36px;
   height: 36px;
   padding: 0px 8px;
@@ -91,8 +92,9 @@ const getNearPages = (currentPage: number | undefined, lastPage: number) => {
 };
 
 const Indicator = ({ totalCount }: { totalCount: number }) => {
+  const { categoryIdx } = useParams();
   const [searchParams] = useSearchParams();
-  const [currentPage, setCurrentPage] = useState<number>();
+  const [currentPage, setCurrentPage] = useState<number>(1);
   const lastPage = useMemo(
     () => Math.floor((totalCount - 1) / 20) + 1,
     [totalCount]
@@ -100,6 +102,13 @@ const Indicator = ({ totalCount }: { totalCount: number }) => {
   const nearPages = useMemo(
     () => getNearPages(currentPage, lastPage),
     [lastPage, currentPage]
+  );
+
+  const getLink = useCallback(
+    (targetPage: number) => {
+      return `/category/${categoryIdx}?page=${targetPage}`;
+    },
+    [categoryIdx]
   );
 
   useEffect(() => {
@@ -110,25 +119,25 @@ const Indicator = ({ totalCount }: { totalCount: number }) => {
   return (
     <Container>
       <InnerContainer>
-        <ArrowRouter>
+        <ArrowRouter to={getLink(currentPage - 1)}>
           <MdChevronLeft />
         </ArrowRouter>
         {nearPages[0] !== 1 && (
           <>
-            <Page>{1}</Page>
+            <Page to={getLink(1)}>{1}</Page>
             <Ellipsis />
           </>
         )}
         {nearPages.map(pageNum => (
-          <Page>{pageNum}</Page>
+          <Page to={getLink(pageNum)}>{pageNum}</Page>
         ))}
         {nearPages[nearPages.length - 1] !== lastPage && (
           <>
             <Ellipsis />
-            <Page>{lastPage}</Page>
+            <Page to={getLink(lastPage)}>{lastPage}</Page>
           </>
         )}
-        <ArrowRouter>
+        <ArrowRouter to={getLink(currentPage + 1)}>
           <MdChevronRight />
         </ArrowRouter>
       </InnerContainer>
