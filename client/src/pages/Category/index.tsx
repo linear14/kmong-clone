@@ -34,12 +34,10 @@ const CategoryPage = () => {
   );
 
   useEffect(() => {
-    dispatch(
-      getServicesByCategoryIdx(
-        Number(categoryIdx),
-        Number(searchParams.get('page')) || 1
-      )
-    );
+    const pageParams = searchParams.get('page');
+    const pageNum = pageParams === null ? 1 : Number(pageParams);
+
+    dispatch(getServicesByCategoryIdx(Number(categoryIdx), Number(pageNum)));
     dispatch(getTotalServiceCount(Number(categoryIdx)));
 
     return () => {
