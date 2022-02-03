@@ -4,6 +4,7 @@ import ServiceList from './ServiceList';
 import { IServiceCard } from 'src/types/service';
 import { ICategoryWithUrl } from 'src/types/category';
 import { Link } from 'react-router-dom';
+import Indicator from './Indicator';
 
 const Container = styled.div`
   min-height: 800px;
@@ -49,6 +50,7 @@ const Body = ({
         ))}
       </HistoryContainer>
       <ServiceList isLoading={isLoading} serviceList={serviceList} />
+      {!isLoading && serviceList.length > 0 && <Indicator totalCount={340} />}
     </Container>
   );
 };
