@@ -1,6 +1,9 @@
 import { IServiceCard } from 'src/types/service';
 
-export const getServicesByCategoryIdx = async (categoryIdx: number) => {
+export const getServicesByCategoryIdx = async (
+  categoryIdx: number,
+  page: number
+) => {
   try {
     const option = {
       method: 'GET',
@@ -8,7 +11,10 @@ export const getServicesByCategoryIdx = async (categoryIdx: number) => {
         Accept: 'application/json'
       }
     };
-    const res = await fetch(`/api/service?categoryIdx=${categoryIdx}`, option);
+    const res = await fetch(
+      `/api/service?categoryIdx=${categoryIdx}&page=${page}`,
+      option
+    );
     if (res.ok) {
       const result: IServiceCard[] = await res.json();
       return result;

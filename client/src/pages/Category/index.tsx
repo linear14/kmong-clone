@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useParams, useSearchParams } from 'react-router-dom';
 import { Body, SideNav } from 'src/components/Category';
 import { useRootCategoryState } from 'src/hooks';
 import { RootState } from 'src/states';
@@ -23,6 +23,8 @@ const Container = styled.div`
 const CategoryPage = () => {
   const dispatch = useDispatch();
   const { categoryIdx } = useParams();
+  const [searchParams] = useSearchParams();
+
   const [rootCategory, getHistoryFromRoot] = useRootCategoryState(
     Number(categoryIdx)
   );
@@ -32,13 +34,18 @@ const CategoryPage = () => {
   );
 
   useEffect(() => {
-    dispatch(getServicesByCategoryIdx(Number(categoryIdx)));
+    dispatch(
+      getServicesByCategoryIdx(
+        Number(categoryIdx),
+        Number(searchParams.get('page')) || 1
+      )
+    );
     dispatch(getTotalServiceCount(Number(categoryIdx)));
 
     return () => {
       dispatch(initSerivces());
     };
-  }, [categoryIdx, dispatch]);
+  }, [categoryIdx, dispatch, searchParams]);
 
   return (
     <Container>

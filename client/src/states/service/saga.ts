@@ -19,12 +19,13 @@ function* getServicesByCategoryIdx({
   payload
 }: {
   type: GetServicesByCategoryIdxAction;
-  payload: { categoryIdx: number };
+  payload: { categoryIdx: number; page: number };
 }) {
   try {
     const result: IServiceCard[] = yield call(
       api.getServicesByCategoryIdx,
-      payload.categoryIdx
+      payload.categoryIdx,
+      payload.page
     );
     yield put(getServicesByCategoryIdxSuccess(result));
   } catch (e) {

@@ -13,9 +13,12 @@ import { IServiceCard } from 'src/types/service';
 export const initSerivces = () => ({
   type: INIT_SERVICES
 });
-export const getServicesByCategoryIdx = (categoryIdx: number) => ({
+export const getServicesByCategoryIdx = (
+  categoryIdx: number,
+  page: number
+) => ({
   type: GET_SERVICES_BY_CATEGORYIDX,
-  payload: { categoryIdx }
+  payload: { categoryIdx, page }
 });
 export const getServicesByCategoryIdxSuccess = (result: IServiceCard[]) => ({
   type: GET_SERVICES_BY_CATEGORYIDX_SUCCESS,
