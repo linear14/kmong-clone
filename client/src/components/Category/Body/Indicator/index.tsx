@@ -23,8 +23,8 @@ const RouterBox = styled(Link)`
   vertical-align: middle;
   line-height: 36px;
   font-size: 14px;
-  font-weight: 500;
-  color: #71727a;
+  font-weight: 400;
+  color: #9a9ba7;
 
   cursor: pointer;
   transition: 0.3s;
@@ -34,14 +34,20 @@ const RouterBox = styled(Link)`
   }
 `;
 
-const ArrowRouter = styled(RouterBox)`
+const ArrowRouter = styled(RouterBox)<{ isActive?: boolean }>`
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 24px;
+
+  pointer-events: ${({ isActive }) => !isActive && 'none'};
+  color: ${({ isActive }) => !isActive && '#dddddd'};
 `;
 
-const Page = styled(RouterBox)``;
+const Page = styled(RouterBox)<{ isActive?: boolean }>`
+  color: ${({ isActive }) => isActive && '#000000'};
+  font-weight: ${({ isActive }) => isActive && '500'};
+`;
 
 const Ellipsis = styled.div`
   width: 36px;
@@ -119,7 +125,7 @@ const Indicator = ({ totalCount }: { totalCount: number }) => {
   return (
     <Container>
       <InnerContainer>
-        <ArrowRouter to={getLink(currentPage - 1)}>
+        <ArrowRouter to={getLink(currentPage - 1)} isActive={currentPage > 1}>
           <MdChevronLeft />
         </ArrowRouter>
         {nearPages[0] !== 1 && (
@@ -129,7 +135,9 @@ const Indicator = ({ totalCount }: { totalCount: number }) => {
           </>
         )}
         {nearPages.map(pageNum => (
-          <Page to={getLink(pageNum)}>{pageNum}</Page>
+          <Page to={getLink(pageNum)} isActive={pageNum === currentPage}>
+            {pageNum}
+          </Page>
         ))}
         {nearPages[nearPages.length - 1] !== lastPage && (
           <>
@@ -137,7 +145,10 @@ const Indicator = ({ totalCount }: { totalCount: number }) => {
             <Page to={getLink(lastPage)}>{lastPage}</Page>
           </>
         )}
-        <ArrowRouter to={getLink(currentPage + 1)}>
+        <ArrowRouter
+          to={getLink(currentPage + 1)}
+          isActive={currentPage < lastPage}
+        >
           <MdChevronRight />
         </ArrowRouter>
       </InnerContainer>
