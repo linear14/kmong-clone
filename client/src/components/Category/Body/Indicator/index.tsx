@@ -93,7 +93,10 @@ const getNearPages = (currentPage: number | undefined, lastPage: number) => {
 const Indicator = ({ totalCount }: { totalCount: number }) => {
   const [searchParams] = useSearchParams();
   const [currentPage, setCurrentPage] = useState<number>();
-  const lastPage = useMemo(() => Math.floor(totalCount / 20), [totalCount]);
+  const lastPage = useMemo(
+    () => Math.floor((totalCount - 1) / 20) + 1,
+    [totalCount]
+  );
   const nearPages = useMemo(
     () => getNearPages(currentPage, lastPage),
     [lastPage, currentPage]

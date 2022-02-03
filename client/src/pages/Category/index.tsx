@@ -6,6 +6,7 @@ import { useRootCategoryState } from 'src/hooks';
 import { RootState } from 'src/states';
 import {
   getServicesByCategoryIdx,
+  getTotalServiceCount,
   initSerivces
 } from 'src/states/service/action';
 import styled from 'styled-components';
@@ -26,9 +27,13 @@ const CategoryPage = () => {
     Number(categoryIdx)
   );
   const serviceList = useSelector((state: RootState) => state.serviceCardList);
+  const totalServiceCount = useSelector(
+    (state: RootState) => state.totalServiceCount
+  );
 
   useEffect(() => {
     dispatch(getServicesByCategoryIdx(Number(categoryIdx)));
+    dispatch(getTotalServiceCount(Number(categoryIdx)));
 
     return () => {
       dispatch(initSerivces());
@@ -39,8 +44,9 @@ const CategoryPage = () => {
     <Container>
       <SideNav rootCategory={rootCategory} />
       <Body
-        isLoading={serviceList.state.loading}
+        isLoading={serviceList.state.loading || totalServiceCount.state.loading}
         serviceList={serviceList.serviceCardList}
+        totalServiceCount={totalServiceCount.count}
         history={getHistoryFromRoot(rootCategory)}
       />
     </Container>

@@ -33,10 +33,12 @@ const HistoryLink = styled(Link)`
 const Body = ({
   isLoading,
   serviceList,
+  totalServiceCount,
   history
 }: {
   isLoading: boolean;
   serviceList: IServiceCard[];
+  totalServiceCount: number;
   history: ICategoryWithUrl[];
 }) => {
   return (
@@ -50,7 +52,9 @@ const Body = ({
         ))}
       </HistoryContainer>
       <ServiceList isLoading={isLoading} serviceList={serviceList} />
-      {!isLoading && serviceList.length > 0 && <Indicator totalCount={340} />}
+      {!isLoading && serviceList.length > 0 && (
+        <Indicator totalCount={totalServiceCount} />
+      )}
     </Container>
   );
 };
