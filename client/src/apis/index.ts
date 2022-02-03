@@ -1,9 +1,10 @@
 import { getAllCategories } from './category';
-import { getServicesByCategoryIdx } from './service';
+import { getServicesByCategoryIdx, getTotalServiceCount } from './service';
 
 const api = {
   getAllCategories,
-  getServicesByCategoryIdx
+  getServicesByCategoryIdx,
+  getTotalServiceCount
 };
 
 export default api;
