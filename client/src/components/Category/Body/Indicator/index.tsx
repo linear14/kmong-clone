@@ -1,8 +1,10 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useParams, useSearchParams } from 'react-router-dom';
 import styled from 'styled-components';
-import { MdChevronLeft, MdChevronRight } from 'react-icons/md';
-import { Link } from 'react-router-dom';
+import { getNearPages } from './util';
+import ArrowRouter from './ArrowRouter';
+import PageRouter from './PageRouter';
+import { RouterDirection, RouterEllipsisDirection } from 'src/enum/style';
 
 const Container = styled.div`
   display: flex;
@@ -13,89 +15,6 @@ const Container = styled.div`
 const InnerContainer = styled.div`
   display: flex;
 `;
-
-const RouterBox = styled(Link)`
-  min-width: 36px;
-  height: 36px;
-  padding: 0px 8px;
-  border-radius: 4px;
-  text-align: center;
-  vertical-align: middle;
-  line-height: 36px;
-  font-size: 14px;
-  font-weight: 400;
-  color: #9a9ba7;
-
-  cursor: pointer;
-  transition: 0.3s;
-
-  &:hover {
-    background-color: #f3f3f3;
-  }
-`;
-
-const ArrowRouter = styled(RouterBox)<{ isActive?: boolean }>`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 24px;
-
-  pointer-events: ${({ isActive }) => !isActive && 'none'};
-  color: ${({ isActive }) => !isActive && '#dddddd'};
-`;
-
-const Page = styled(RouterBox)<{ isActive?: boolean }>`
-  color: ${({ isActive }) => isActive && '#000000'};
-  font-weight: ${({ isActive }) => isActive && '500'};
-`;
-
-const Ellipsis = styled.div`
-  width: 36px;
-  height: 36px;
-  line-height: 36px;
-  text-align: center;
-  vertical-align: middle;
-  padding: 0px 8px;
-  font-size: 14px;
-  font-weight: 500;
-  color: #9a9ba7;
-
-  &::after {
-    content: '…';
-  }
-`;
-
-const getNearPages = (currentPage: number | undefined, lastPage: number) => {
-  const pages = [];
-  if (currentPage && currentPage <= lastPage) {
-    if (currentPage < 3) {
-      for (let i = 1; i <= 5; i++) {
-        if (i <= lastPage) {
-          pages.push(i);
-        }
-      }
-    } else if (currentPage > lastPage - 2) {
-      for (let i = lastPage - 4; i <= lastPage; i++) {
-        if (i > 0) {
-          pages.push(i);
-        }
-      }
-    } else {
-      for (let i = currentPage - 2; i <= currentPage + 2; i++) {
-        if (i > 0 && i <= lastPage) {
-          pages.push(i);
-        }
-      }
-    }
-  }
-  if (pages[0] === 2) {
-    pages.unshift(1);
-  }
-  if (pages[pages.length - 1] === lastPage - 1) {
-    pages.push(lastPage);
-  }
-  return pages;
-};
 
 const Indicator = ({ totalCount }: { totalCount: number }) => {
   const { categoryIdx } = useParams();
@@ -125,32 +44,37 @@ const Indicator = ({ totalCount }: { totalCount: number }) => {
   return (
     <Container>
       <InnerContainer>
-        <ArrowRouter to={getLink(currentPage - 1)} isActive={currentPage > 1}>
-          <MdChevronLeft />
-        </ArrowRouter>
+        <ArrowRouter
+          dir={RouterDirection.PREVIOUS}
+          targetLink={getLink(currentPage - 1)}
+          isActive={currentPage > 1}
+        />
         {nearPages[0] !== 1 && (
-          <>
-            <Page to={getLink(1)}>{1}</Page>
-            <Ellipsis />
-          </>
+          <PageRouter
+            targetLink={getLink(1)}
+            pageNum={1}
+            ellipsis={RouterEllipsisDirection.RIGHT}
+          />
         )}
         {nearPages.map(pageNum => (
-          <Page to={getLink(pageNum)} isActive={pageNum === currentPage}>
-            {pageNum}
-          </Page>
+          <PageRouter
+            targetLink={getLink(pageNum)}
+            pageNum={pageNum}
+            isActive={pageNum === currentPage}
+          />
         ))}
         {nearPages[nearPages.length - 1] !== lastPage && (
-          <>
-            <Ellipsis />
-            <Page to={getLink(lastPage)}>{lastPage}</Page>
-          </>
+          <PageRouter
+            targetLink={getLink(lastPage)}
+            pageNum={lastPage}
+            ellipsis={RouterEllipsisDirection.LEFT}
+          />
         )}
         <ArrowRouter
-          to={getLink(currentPage + 1)}
+          dir={RouterDirection.NEXT}
+          targetLink={getLink(currentPage + 1)}
           isActive={currentPage < lastPage}
-        >
-          <MdChevronRight />
-        </ArrowRouter>
+        />
       </InnerContainer>
     </Container>
   );
