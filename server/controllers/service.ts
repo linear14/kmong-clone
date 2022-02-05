@@ -8,8 +8,25 @@ export default {
     next: NextFunction
   ) {
     try {
-      const { categoryIdx } = req.query;
+      const { categoryIdx, page } = req.query;
       const result = await serviceService.getServicesByCategoryIdx(
+        Number(categoryIdx),
+        Number(page)
+      );
+      res.json(result);
+    } catch (e) {
+      next('Internal Server Error');
+    }
+  },
+
+  getTotalServiceCount: async function (
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ) {
+    try {
+      const { categoryIdx } = req.query;
+      const result = await serviceService.getTotalServiceCount(
         Number(categoryIdx)
       );
       res.json(result);

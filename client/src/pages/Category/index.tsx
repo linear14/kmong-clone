@@ -1,5 +1,14 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams, useSearchParams } from 'react-router-dom';
 import { Body, SideNav } from 'src/components/Category';
+import { useRootCategoryState } from 'src/hooks';
+import { RootState } from 'src/states';
+import {
+  getServicesByCategoryIdx,
+  getTotalServiceCount,
+  initSerivces
+} from 'src/states/service/action';
 import styled from 'styled-components';
 
 const Container = styled.div`
@@ -12,10 +21,39 @@ const Container = styled.div`
 `;
 
 const CategoryPage = () => {
+  const dispatch = useDispatch();
+  const { categoryIdx } = useParams();
+  const [searchParams] = useSearchParams();
+
+  const [rootCategory, getHistoryFromRoot] = useRootCategoryState(
+    Number(categoryIdx)
+  );
+  const serviceList = useSelector((state: RootState) => state.serviceCardList);
+  const totalServiceCount = useSelector(
+    (state: RootState) => state.totalServiceCount
+  );
+
+  useEffect(() => {
+    const pageParams = searchParams.get('page');
+    const pageNum = pageParams === null ? 1 : Number(pageParams);
+
+    dispatch(getServicesByCategoryIdx(Number(categoryIdx), Number(pageNum)));
+    dispatch(getTotalServiceCount(Number(categoryIdx)));
+
+    return () => {
+      dispatch(initSerivces());
+    };
+  }, [categoryIdx, dispatch, searchParams]);
+
   return (
     <Container>
-      <SideNav />
-      <Body />
+      <SideNav rootCategory={rootCategory} />
+      <Body
+        isLoading={serviceList.state.loading || totalServiceCount.state.loading}
+        serviceList={serviceList.serviceCardList}
+        totalServiceCount={totalServiceCount.count}
+        history={getHistoryFromRoot(rootCategory)}
+      />
     </Container>
   );
 };

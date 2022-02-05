@@ -1,6 +1,9 @@
 import { IServiceCard } from 'src/types/service';
 
-export const getServicesByCategoryIdx = async (categoryIdx: number) => {
+export const getServicesByCategoryIdx = async (
+  categoryIdx: number,
+  page: number
+) => {
   try {
     const option = {
       method: 'GET',
@@ -8,7 +11,10 @@ export const getServicesByCategoryIdx = async (categoryIdx: number) => {
         Accept: 'application/json'
       }
     };
-    const res = await fetch(`/api/service?categoryIdx=${categoryIdx}`, option);
+    const res = await fetch(
+      `/api/service?categoryIdx=${categoryIdx}&page=${page}`,
+      option
+    );
     if (res.ok) {
       const result: IServiceCard[] = await res.json();
       return result;
@@ -17,5 +23,28 @@ export const getServicesByCategoryIdx = async (categoryIdx: number) => {
     }
   } catch (err) {
     return [];
+  }
+};
+
+export const getTotalServiceCount = async (categoryIdx: number) => {
+  try {
+    const option = {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json'
+      }
+    };
+    const res = await fetch(
+      `/api/service/count?categoryIdx=${categoryIdx}`,
+      option
+    );
+    if (res.ok) {
+      const result: { count: number }[] = await res.json();
+      return result[0].count;
+    } else {
+      return 0;
+    }
+  } catch (err) {
+    return 0;
   }
 };

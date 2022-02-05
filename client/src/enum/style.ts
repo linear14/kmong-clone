@@ -9,3 +9,13 @@ export enum ButtonSize {
   NORMAL,
   LARGE
 }
+
+export enum RouterDirection {
+  PREVIOUS,
+  NEXT
+}
+
+export enum RouterEllipsisDirection {
+  LEFT,
+  RIGHT
+}

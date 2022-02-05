@@ -1,21 +1,37 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import ServiceCard from 'src/components/common/ServiceCard';
+import ServiceCardSkeleton from 'src/components/common/ServiceCard/Skeleton';
 import { IServiceCard } from 'src/types/service';
 import styled from 'styled-components';
+import NoResult from './NoResult';
 
 const Container = styled.div`
-  margin: 0px -12px;
+  margin: 24px -12px 0px;
 
   display: flex;
   flex-wrap: wrap;
 `;
 
-const ServiceList = ({ serviceList }: { serviceList: IServiceCard[] }) => {
+const ServiceList = ({
+  isLoading,
+  serviceList
+}: {
+  isLoading: boolean;
+  serviceList: IServiceCard[];
+}) => {
   return (
     <Container>
-      {serviceList.map(item => (
-        <ServiceCard key={item.serviceIdx} service={item} />
-      ))}
+      {isLoading ? (
+        Array.from({ length: 8 }).map((_, idx) => (
+          <ServiceCardSkeleton key={idx} />
+        ))
+      ) : serviceList.length === 0 ? (
+        <NoResult />
+      ) : (
+        serviceList.map(item => (
+          <ServiceCard key={item.serviceIdx} service={item} />
+        ))
+      )}
     </Container>
   );
 };
