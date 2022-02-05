@@ -3,6 +3,7 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { Footer, Header } from './components/common';
 import Category from './pages/Category';
+import Service from './pages/Service';
 import Home from './pages/Home';
 
 const Body = styled.div`
@@ -22,6 +23,7 @@ const App = () => {
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/category/:categoryIdx' element={<Category />} />
+          <Route path='/service/:serviceIdx' element={<Service />} />
           <Route path='*' element={<Navigate to='/' />} />
         </Routes>
       </Body>
