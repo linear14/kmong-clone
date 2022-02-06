@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { useParams } from 'react-router-dom';
-import { History } from 'src/components/Service';
+import { History, Thumbnail } from 'src/components/Service';
+import { serviceMock } from 'src/__mock__/service';
+import { serviceItemMock } from 'src/__mock__/serviceItem';
+import { userMock } from 'src/__mock__/user';
 import styled from 'styled-components';
 
 const Container = styled.div`
@@ -24,11 +27,20 @@ const BodyRight = styled.div`
 
 const Service = () => {
   const { serviceIdx } = useParams();
+  const { user, service, serviceItem } = useMemo(() => {
+    const service = serviceMock[Number(serviceIdx) - 1];
+    return {
+      user: userMock[service.userIdx],
+      service,
+      serviceItem: serviceItemMock[Number(serviceIdx) - 1]
+    };
+  }, [serviceIdx]);
 
   return (
     <Container>
       <BodyLeft>
-        <History categoryIdx={101} />
+        <History categoryIdx={service.categoryIdx} />
+        <Thumbnail url={service.thumbnailUrl || undefined} />
       </BodyLeft>
       <BodyRight />
     </Container>
