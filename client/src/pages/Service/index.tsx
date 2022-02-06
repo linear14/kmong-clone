@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 import { useParams } from 'react-router-dom';
-import { History, Thumbnail } from 'src/components/Service';
+import { History, RateBox, Thumbnail } from 'src/components/Service';
 import { serviceMock } from 'src/__mock__/service';
 import { serviceItemMock } from 'src/__mock__/serviceItem';
 import { userMock } from 'src/__mock__/user';
@@ -41,6 +41,7 @@ const Service = () => {
       <BodyLeft>
         <History categoryIdx={service.categoryIdx} />
         <Thumbnail url={service.thumbnailUrl || undefined} />
+        <RateBox rate={4.7} rateCnt={3} />
       </BodyLeft>
       <BodyRight />
     </Container>
