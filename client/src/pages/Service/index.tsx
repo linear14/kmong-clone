@@ -1,5 +1,6 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
+import { History } from 'src/components/Service';
 import styled from 'styled-components';
 
 const Container = styled.div`
@@ -26,7 +27,9 @@ const Service = () => {
 
   return (
     <Container>
-      <BodyLeft />
+      <BodyLeft>
+        <History categoryIdx={101} />
+      </BodyLeft>
       <BodyRight />
     </Container>
   );
