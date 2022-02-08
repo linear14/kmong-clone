@@ -17,19 +17,21 @@ const Container = styled.div<{ current: number; active: number }>`
 
 const FixedContainer = styled.div`
   display: flex;
-  padding: 24px;
+  padding: 20px 24px;
 `;
 
 const ExpandedContainer = styled.div<{ isActive: boolean }>`
-  height: ${({ isActive }) => !isActive && '0px'};
+  max-height: ${({ isActive }) => isActive ? '500px' : '0px'};
   overflow-y: hidden;
-  padding: ${({ isActive }) => (isActive ? '16px 24px' : '0px')};
-  border-top: ${({ isActive }) => isActive && '1px solid #eeeeee'};
+  padding: 0px 24px;
+
+  transition: max-height 0.6s;
 `;
 
 const Price = styled.div`
   font-size: 18px;
   font-weight: bold;
+  line-height: 20px;
 `;
 
 const Type = styled.div`
@@ -37,11 +39,19 @@ const Type = styled.div`
   font-size: 16px;
   font-weight: 500;
   color: #bbbbbb;
+  line-height: 20px;
 `;
+
+const Line = styled.div`
+  width: 100%;
+  height: 1px;
+  background: #eeeeee;
+`
 
 const Title = styled.div`
   font-weight: bold;
   font-size: 15px;
+  margin-top: 16px;
 `;
 
 const Description = styled.div`
@@ -51,7 +61,7 @@ const Description = styled.div`
 `;
 
 const FlexContainer = styled.div`
-  margin-top: 16px;
+  margin-top: 20px;
   display: flex;
   color: #444444;
 
@@ -102,6 +112,7 @@ const Item = ({
         </Type>
       </FixedContainer>
       <ExpandedContainer isActive={isActive}>
+        <Line/>
         <Title>{serviceItem.title}</Title>
         <Description>{serviceItem.description}</Description>
         <FlexContainer>
@@ -115,7 +126,7 @@ const Item = ({
           </EditCnt>
         </FlexContainer>
         <Button
-          style={{ marginTop: 16 }}
+          style={{ marginTop: 20, marginBottom: 20 }}
           appearance={ButtonAppearance.YELLOW}
           size={ButtonSize.FULL}
         >
