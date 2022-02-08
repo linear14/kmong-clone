@@ -3,8 +3,9 @@ import styled from 'styled-components';
 import Header from './Header';
 import { IServiceCard } from 'src/types/service';
 import Body from './Body';
+import { Link } from 'react-router-dom';
 
-const Container = styled.div`
+const Container = styled(Link)`
   position: relative;
   width: 25%;
   height: 302px;
@@ -34,6 +35,7 @@ const ServiceCard = ({ service }: { service: IServiceCard }) => {
 
   return (
     <Container
+      to={`/service/${serviceIdx}`}
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
     >
