@@ -1,13 +1,15 @@
 export enum ButtonAppearance {
   TRANSPARENT,
   BLUE,
-  OUTLINE
+  OUTLINE,
+  YELLOW
 }
 
 export enum ButtonSize {
   SMALL,
   NORMAL,
-  LARGE
+  LARGE,
+  FULL
 }
 
 export enum RouterDirection {
