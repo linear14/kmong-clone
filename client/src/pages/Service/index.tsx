@@ -50,7 +50,7 @@ const Service = () => {
           leastPrice={service.leastPrice}
           isPackage={!!service.isPackage}
         />
-        <ServiceItem />
+        <ServiceItem itemList={serviceItem} />
       </BodyRight>
     </Container>
   );

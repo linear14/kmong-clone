@@ -7,7 +7,8 @@ export const serviceItemMock = [
       description: '설명1',
       price: 3000,
       workingDay: 3,
-      editCnt: 1
+      editCnt: 1,
+      type: 1
     }
   ],
   [
@@ -18,7 +19,8 @@ export const serviceItemMock = [
       description: '설명1',
       price: 13000,
       workingDay: 5,
-      editCnt: 1
+      editCnt: 1,
+      type: 1
     },
     {
       serviceItemIdx: 3,
@@ -27,7 +29,8 @@ export const serviceItemMock = [
       description: '설명2',
       price: 30000,
       workingDay: 7,
-      editCnt: 2
+      editCnt: 2,
+      type: 2
     },
     {
       serviceItemIdx: 4,
@@ -36,7 +39,8 @@ export const serviceItemMock = [
       description: '설명3',
       price: 55000,
       workingDay: 10,
-      editCnt: 2
+      editCnt: 2,
+      type: 3
     }
   ]
 ];
